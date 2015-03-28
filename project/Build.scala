@@ -13,8 +13,8 @@ object SkinnyAppBuild extends Build {
   // -------------------------------------------------------
 
   val appOrganization = "org.skinny-framework"
-  val appName = "skinny-blank-app"
-  val appVersion = "0.1.0-SNAPSHOT"
+  val appName = "anime-lineup"
+  val appVersion = "0.1.0"
 
   val skinnyVersion = "1.3.14"
   val scalatraVersion = "2.3.0"
