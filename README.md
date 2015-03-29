@@ -1,7 +1,9 @@
-## anime-lineup
+# anime-lineup
 
 We introduce Japanese animations to you!
 This is web application.
+
+[![Build Status](https://travis-ci.org/tsukaby/anime-lineup.svg?branch=master)](https://travis-ci.org/tsukaby/anime-lineup)
 
 ### Docker
 
