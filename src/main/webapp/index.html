@@ -9,12 +9,12 @@
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
   <!-- build:css assets/css/scss.css -->
-  <link rel="stylesheet" href="/assets/css/application-scss.css">
+  <link rel="stylesheet" href="assets/css/application-scss.css">
   <!-- endbuild -->
 </head>
-<body id="index_body" ng-app="animeLineupApp" ng-init="targetOfPartial = 'anime_list'">
+<body id="index_body" ng-app="animeLineup">
 
-<div ng-view></div>
+<div ui-view></div>
 <footer>
   <hr>
   <div class="container">
@@ -59,24 +59,11 @@
 <script src="assets/bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="assets/bower_components/angular-scroll/angular-scroll.min.js"></script>
 <script src="assets/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="assets/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <!-- endbower -->
 
 <!-- build:js -->
-<script src="assets/js/app.js"></script>
-<script src="assets/js/controllers/anime_list.js"></script>
-<script src="assets/js/controllers/anime_search.js"></script>
-<script src="assets/js/controllers/help.js"></script>
-<script src="assets/js/controllers/login.js"></script>
-<script src="assets/js/controllers/modal_instance.js"></script>
-<script src="assets/js/controllers/register_anime.js"></script>
-<script src="assets/js/controllers/season.js"></script>
-<script src="assets/js/filters/season_color.js"></script>
-<script src="assets/js/filters/viewing_sort.js"></script>
-<script src="assets/js/services/anime_search_service.js"></script>
-<script src="assets/js/services/auth.js"></script>
-<script src="assets/js/services/navigation_service.js"></script>
-<script src="assets/js/services/season_factory.js"></script>
-<script src="assets/js/services/session.js"></script>
+<script src="assets/js/application-all.js"></script>
 <!-- endbuild -->
 </body>
 </html>

@@ -5,7 +5,17 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         setting: {
             webapp: 'src/main/webapp',
+            tsMain: 'src/main/webapp/assets/grunt/ts',
+            tsTest: 'src/main/webapp/assets/grunt/ts',
+            typings: 'src/main/webapp/assets/grunt/ts/typings',
             dist: 'dist'
+        },
+        clean: {
+            all: {
+                src: [
+                    '<%= setting.typings %>/*'
+                ]
+            },
         },
         typescript: {
             base: {
@@ -41,7 +51,7 @@ module.exports = function (grunt) {
         },
         watch: {
             files: '<%= setting.webapp %>/assets/grunt/**/*',
-            tasks: ['typescript', 'sass']
+            tasks: ['typescript', 'sass', 'uglify']
         },
         mochaTest: {
             test: {
@@ -77,10 +87,39 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        tsd: {
+            client: {
+                options: {
+                    // execute a command
+                    command: 'reinstall',
+
+                    //optional: always get from HEAD
+                    latest: false,
+
+                    // optional: specify config file
+                    config: './tsd.json'
+                }
+            }
+        },
+        tslint: {
+            options: {
+                formatter: "prose",
+                configuration: grunt.file.readJSON("tslint.json")
+            },
+            files: {
+                src: [
+                    '<%= setting.tsMain %>/controller/**/*.ts',
+                    '<%= setting.tsMain %>/filter/**/*.ts',
+                    '<%= setting.tsMain %>/service/**/*.ts',
+                    '<%= setting.tsMain %>/*.ts'
+                ]
+            }
         }
     });
 
-    grunt.registerTask('compile', ['wiredep', 'typescript', 'sass', 'concat']);
+    grunt.registerTask('setup', ['clean', 'tsd']);
+    grunt.registerTask('compile', ['wiredep', 'typescript', 'tslint', 'sass', 'concat']);
     grunt.registerTask('phantomJsTest', ['connect', 'mocha_phantomjs']);
     grunt.registerTask('test', ['compile', 'mochaTest', 'phantomJsTest']);
     grunt.registerTask('build', ['compile', 'mochaTest', 'uglify']);

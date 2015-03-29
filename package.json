@@ -51,6 +51,9 @@
     "grunt-rsync": "^0.6.2",
     "grunt-sass": "^0.18.1",
     "grunt-svgmin": "^2.0.0",
+    "grunt-ts": "^4.0.1",
+    "grunt-tsd": "^0.1.0",
+    "grunt-tslint": "^2.0.0",
     "grunt-typescript": "^0.6.1",
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",
@@ -76,6 +79,7 @@
     "should": "^4.4.2",
     "supertest": "^0.15.0",
     "time-grunt": "^1.0.0",
+    "tslint": "^2.1.1",
     "typescript": "^1.4.1"
   },
   "engines": {
