@@ -1,0 +1,27 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "src/main/webapp/assets/grunt/ts/typings",
+  "bundle": "src/main/webapp/assets/grunt/ts/typings/bundle.d.ts",
+  "installed": {
+    "jquery/jquery.d.ts": {
+      "commit": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "angularjs/angular.d.ts": {
+      "commit": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "angular-ui/angular-ui-router.d.ts": {
+      "commit": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "mocha/mocha.d.ts": {
+      "commit": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "assert/assert.d.ts": {
+      "commit": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "angularjs/angular-mocks.d.ts": {
+      "commit": "3882d337bb0808cde9fe4c08012508a48c135482"
+    }
+  }
+}

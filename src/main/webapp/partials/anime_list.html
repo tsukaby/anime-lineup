@@ -1,0 +1,70 @@
+<div ng-include="'/partials/navbar.html'"></div>
+<nav class="container-fluid">
+  <span ng-show="currentUser">{{ currentUser.name }}</span>
+
+  <div class="row">
+    <ul class="pager">
+      <li class="previous" ng-class={'disabled':!previousSeason}><a ng-href="{{previousSeason}}"><span
+        class="glyphicon glyphicon-chevron-left"></span>Old</a></li>
+      <li><a href="/season_calendar">{{NavigationService.title}}</a></li>
+      <li class="next" ng-class={'disabled':!nextSeason}><a ng-href="{{nextSeason}}">New<span
+        class="glyphicon glyphicon-chevron-right"></span></a></li>
+    </ul>
+  </div>
+</nav>
+<hr>
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6" ng-show="animes">
+      <span>合計<span class="badge">{{animes.length}}</span></span>
+      <span ng-show="currentUser">切った<span class="badge">{{(animes | filter:{status:0}).length}}</span></span>
+      <span ng-show="currentUser">保留<span class="badge">{{(animes | filter:{status:1}).length}}</span></span>
+      <span ng-show="currentUser">見てる<span class="badge">{{(animes | filter:{status:2}).length}}</span></span>
+    </div>
+    <div class="col-xs-6 btn-group pull-right">
+      <button class="btn btn-default btn-sm dropdown-toggle sort-button pull-right" type="button" data-toggle="dropdown">
+        Sort<span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="" ng-click="sortTitle()">Title</a></li>
+        <li ng-show="currentUser"><a href="" ng-click="sortViewingHistories()">Viewing</a></li>
+      </ul>
+    </div>
+  </div>
+  <div ng-hide="isLoaded">
+    <div ng-include="'/partials/loading.html'"></div>
+  </div>
+  <ul id="anime_list" class="row" ng-show="isLoaded">
+    <li class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="anime in animes | filter:filter">
+      <div class="panel panel-primary" ng-class="{'panel-gray':anime.status === 0, 'panel-blue':anime.status === 1, 'panel-green':anime.status === 2}">
+        <div class="panel-heading" style="height:55px;">
+          <a href="" ng-click="open(anime)"><h3 class="panel-title text-center" style="color:white;">
+            {{anime.getTitle()}}</h3></a>
+        </div>
+        <div class="panel-body">
+          <a href="" ng-click="open(anime)" target="_blank"><img title="{{anime.getTitle()}}"
+            ng-src="{{anime.getThumbnailURL()}}" width="200" height="200"/></a>
+        </div>
+        <!-- 視聴状況選択 -->
+        <div class="panel-footer" ng-show="currentUser">
+          <div class="btn-group" data-toggle="buttons" style="width:100%">
+            <label class="btn btn-gray" style="width:33%" ng-class="{'active':anime.status === 0}" ng-click="view(anime, 0)"><input type="radio" name="options">切った</label>
+            <label class="btn btn-default" style="width:33%" ng-class="{'active':anime.status === 1}" ng-click="view(anime, 1)"><input type="radio" name="options">保留</label>
+            <label class="btn btn-success" style="width:33%" ng-class="{'active':anime.status === 2}" ng-click="view(anime, 2)"><input type="radio" name="options">見てる</label>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</article>
+<hr>
+<nav class="container-fluid">
+  <div class="row">
+    <ul class="pager">
+      <li class="previous" ng-class={'disabled':!previousSeason}><a ng-href="{{previousSeason}}"
+        ng-click="resetScroll()"><span class="glyphicon glyphicon-chevron-left"></span>Old</a></li>
+      <li><a href="/season_calendar">{{NavigationService.title}}</a></li>
+      <li class="next" ng-class={'disabled':!nextSeason}><a ng-href="{{nextSeason}}" ng-click="resetScroll()">New<span
+        class="glyphicon glyphicon-chevron-right"></span></a></li>
+    </ul>
+  </div>
+</nav>

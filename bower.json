@@ -1,14 +1,23 @@
 {
-  "name": "TODO",
-  "version": "0.1",
-  "homepage": "http://skinny-framework.org/",
-  "authors": [],
-  "license": "TODO",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+  "name": "anime-lineup",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "1.2.28",
+    "jquery": "2.1.0",
+    "bootstrap-sass-official": "3.1.1",
+    "angular-route": "1.2.28",
+    "angular-ui-bootstrap-bower": "0.10.0",
+    "angular-cookies": "1.2.28",
+    "angular-resource": "1.2.28",
+    "angular-sanitize": "1.2.28",
+    "angular-scroll": "0.3.0",
+    "bootstrap": "3.1.1",
+    "angular-ui-router": "~0.2.13"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.28",
+    "angular-scenario": "1.2.28",
+    "angular-scroll": "0.3.0"
+  },
+  "testPath": "test/client/spec"
 }
