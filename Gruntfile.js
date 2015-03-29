@@ -51,7 +51,7 @@ module.exports = function (grunt) {
         },
         watch: {
             files: '<%= setting.webapp %>/assets/grunt/**/*',
-            tasks: ['typescript', 'sass', 'uglify']
+            tasks: ['compile']
         },
         mochaTest: {
             test: {

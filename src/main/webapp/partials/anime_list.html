@@ -38,10 +38,10 @@
       <div class="panel panel-primary" ng-class="{'panel-gray':anime.status === 0, 'panel-blue':anime.status === 1, 'panel-green':anime.status === 2}">
         <div class="panel-heading" style="height:55px;">
           <a href="" ng-click="open(anime)"><h3 class="panel-title text-center" style="color:white;">
-            {{anime.getTitle()}}</h3></a>
+            {{anime.name}}</h3></a>
         </div>
         <div class="panel-body">
-          <a href="" ng-click="open(anime)" target="_blank"><img title="{{anime.getTitle()}}"
+          <a href="" ng-click="open(anime)" target="_blank"><img title="{{anime.name}}"
             ng-src="{{anime.getThumbnailURL()}}" width="200" height="200"/></a>
         </div>
         <!-- 視聴状況選択 -->
