@@ -12,6 +12,12 @@ RUN curl -LO "http://download.oracle.com/otn-pub/java/jdk/$JDK_VERSION-$JDK_BUIL
 RUN yum clean all
 ENV JAVA_HOME /usr/java/default
 
+RUN rpm -Uvh http://download.newrelic.com/pub/newrelic/el5/i386/newrelic-repo-5-3.noarch.rpm
+RUN yum install newrelic-sysmond
+RUN nrsysmond-config --set license_key=b48d398f09760075b90a4b9204c39ca8ff20b258
+RUN /etc/init.d/newrelic-sysmond start
+RUN chkconfig newrelic-sysmond on
+
 # Copy application
 ADD standalone-build/target/scala-2.11/anime-lineup* /usr/local/anime-lineup.jar
 
