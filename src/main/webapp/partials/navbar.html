@@ -1,0 +1,34 @@
+<nav class="navbar navbar-static-top navbar-blue navbar-settings" ng-controller="AnimeSearchCtrl">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand" target="_self">アニメラインナップ</a>
+    </div>
+    <div class="navbar-collapse collapse in" style="height: 1px;">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="" ng-class="{active: isActive(item.link)}"><a href="/help">Help</a></li>
+        <li ng-class="{active: isActive(item.link)}"><a href="/season_calendar">Seasons</a></li>
+        <li ng-hide="currentUser" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
+        <li ng-show="currentUser" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-right" ng-show="isVisibleSearchBox" ng-submit="blurSearchBox(); searchByTitle(searchWord);">
+        <div class="input-group">
+          <input id="search_box" type="text" placeholder="Title" class="form-control"
+            ng-model="searchWord">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"
+                      ng-click="blurSearchBox(); searchByTitle(searchWord);"><i
+                      class="glyphicon glyphicon-search"></i></button>
+                  </span>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</nav>

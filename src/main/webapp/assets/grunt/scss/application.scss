@@ -1,8 +1,149 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
+@import '../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+
+/* Extra small devices (tablets, 767px and down) */
+@media (max-width: $screen-xs-max) {
+  .panel-title {
+    font-size: 20px;
+  }
+
+  .btn-lg {
+    font-size: 40px;
+  }
 }
 
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  .panel-title {
+    font-size: 20px;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+  .panel-title {
+    font-size: 16px;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+  .panel-title {
+    font-size: 16px;
+  }
+}
+
+#anime_list {
+  padding: 0px;
+  margin: 2px;
+}
+
+ul#introduce {
+  text-align: center;
+  height: 70px;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+ul#introduce li {
+  display: inline;
+  float: left;
+}
+
+#anime_list .panel-body {
+  text-align: center;
+}
+
+ul {
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+#index_body {
+  background-color: #FAFAFA;
+}
+
+.panel-title p {
+  color: #424272;
+}
+
+.navbar-blue {
+  background-color: #0c3b81;
+  color: white;
+
+  & .navbar-toggle {
+    border-color: #6c6b81;
+    & .icon-bar {
+      background-color: #FFFFFF;
+    }
+  }
+}
+
+#index_body footer .container {
+  text-align: center;
+}
+
+#seasons_dialog_content {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-settings {
+  margin-bottom: 0px;
+}
+
+.btn-gray {
+  @extend .btn-success;
+  background-color: #404040;
+  border-color: #303030;
+  color: #FFFFFF;
+}
+
+.btn-gray:hover {
+  @extend .btn-success:hover;
+  background-color: #303030;
+  border-color: #202020;
+  color: #FFFFFF;
+}
+
+.btn-gray.active {
+  @extend .btn-success:hover;
+  background-color: #303030;
+  border-color: #202020;
+  color: #FFFFFF;
+}
+
+.panel-green {
+  @extend .panel-primary;
+  border-color: #5CB85C;
+
+  & > .panel-heading {
+    background-color: #5CB85C;
+    border-color: #5CB85C;
+    color: #FFFFFF;
+  }
+}
+
+.panel-gray {
+  @extend .panel-primary;
+  border-color: #404040;
+
+  & > .panel-heading {
+    background-color: #404040;
+    border-color: #404040;
+    color: #FFFFFF;
+  }
+}
+
+.panel-blue {
+  @extend .panel-primary;
+}

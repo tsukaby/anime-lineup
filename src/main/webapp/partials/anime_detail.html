@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <h3>{{anime.getTitle()}}
+    <span class="badge pull-right" style="background: {{anime.season| seasonColorFilter}}">{{anime.year}} {{anime.season}}</span>
+    <a ng-href="{{anime.getWikipediaURL()}}" target="_blank"><span class="badge pull-right">Wikipedia</span></a>
+    <a ng-href="{{anime.getURL()}}" target="_blank"><span class="badge pull-right">公式</span></a>
+  </h3>
+</div>
+<div class="modal-body">
+  <a href="{{anime.getURL()}}" target="_blank"><img title="{{anime.getTitle()}}"
+    ng-src="{{anime.getThumbnailURL2(300,400)}}" width="300" height="400"/></a>
+  <ul id="introduce">
+    <!-- Google -->
+    <li>
+      <!-- +1 ボタン を表示したい位置に次のタグを貼り付けてください。 -->
+      <div class="g-plusone" data-size="tall" data-href="{{anime.getURL()}}"></div>
+      <!-- 最後の +1 ボタン タグの後に次のタグを貼り付けてください。 -->
+      <script type="text/javascript">
+        window.___gcfg = {lang: 'ja'};
+        (function () {
+          var po = document.createElement('script');
+          po.type = 'text/javascript';
+          po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(po, s);
+        })();</script>
+    </li>
+    <!-- Hatena -->
+    <li>
+      <a href="{{anime.getHatebuURL()}}" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-balloon"
+        data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img
+        src="https://b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20"
+        height="20" style="border: none;"/></a>
+      <script type="text/javascript" src="https://b.hatena.ne.jp/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <!-- Twitter -->
+    <li><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{anime.getURL()}}" data-lang="en"
+      data-text="{{anime.getTitle()}}" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
+      <script>!function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+          js = d.createElement(s);
+          js.id = id;
+          js.async = true;
+          js.src = "https://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        } else {
+          twttr.widgets.load();
+        }
+      }(document, "script", "twitter-wjs");</script>
+    </li>
+    <!-- Facebook -->
+    <li>
+      <iframe ng-src="{{anime.getFacebookButtonURL()}}" scrolling="no" frameborder="0"
+        style="border:none; overflow:hidden; height:65px;" allowTransparency="true"></iframe>
+    </li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="close()">Close</button>
+</div>

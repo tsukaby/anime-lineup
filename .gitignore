@@ -64,3 +64,5 @@ ivy2
 
 node_modules
 
+bower_components
+src/main/webapp/assets/
