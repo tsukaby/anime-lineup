@@ -1,0 +1,5 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {"Name": "tsukaby/anime-lineup:latest"},
+  "Ports": [{"ContainerPort": "8080"}]
+}

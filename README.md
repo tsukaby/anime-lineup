@@ -1,10 +1,20 @@
-## Skinny application
+## anime-lineup
 
-Run Skinny app now!
+We introduce Japanese animations to you!
+This is web application.
 
-    ./skinny run
+### Docker
 
-### Skinny Framework
+```
+# Preparation
+boot2docker init
+boot2docker up
 
-http://skinny-framework.org/
+# setup DOCKER_ENV
 
+# compile
+docker build -t tsukaby/anime-lineup .
+
+# run
+docker run -d -p 80:8080 tsukaby/anime-lineup
+```
