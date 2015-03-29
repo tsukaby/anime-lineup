@@ -1,6 +1,6 @@
 package controller
 
-import _root_.controller.api.{CompaniesController, AnimatorsController, AnimesController}
+import _root_.controller.api.{SeasonsController, CompaniesController, AnimatorsController, AnimesController}
 import skinny._
 import skinny.controller.AssetsController
 
@@ -10,6 +10,7 @@ object Controllers {
     apiCompanies.mount(ctx)
     apiAnimes.mount(ctx)
     apiAnimators.mount(ctx)
+    apiSeasons.mount(ctx)
     //root.mount(ctx)
     AssetsController.mount(ctx)
   }
@@ -20,12 +21,19 @@ object Controllers {
   }
   */
   object apiAnimators extends AnimatorsController with Routes {
+    val indexUrl = get("/api/animator/?")(index).as('index)
   }
 
   object apiAnimes extends AnimesController with Routes {
+    val indexUrl = get("/api/animes/?")(index).as('index)
   }
 
   object apiCompanies extends CompaniesController with Routes {
+    val indexUrl = get("/api/companies/?")(index).as('index)
+  }
+
+  object apiSeasons extends SeasonsController with Routes {
+    val indexUrl = get("/api/seasons/?")(index).as('index)
   }
 
 }

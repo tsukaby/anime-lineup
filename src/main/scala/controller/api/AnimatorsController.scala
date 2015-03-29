@@ -1,38 +1,19 @@
 package controller.api
 
 import model.Animator
+import scalikejdbc._
 import skinny._
-import skinny.controller.SkinnyApiResource
 import skinny.controller.feature.AngularXHRServerFeature
-import skinny.validator._
 
-class AnimatorsController extends SkinnyApiResource with AngularXHRServerFeature {
+class AnimatorsController extends SkinnyApiController with AngularXHRServerFeature {
   protectFromForgery()
 
-  override def model = Animator
-  override def resourcesName = "animators"
-  override def resourceName = "animator"
+  def index = {
+    val name = params.get("name")
 
-  override def resourcesBasePath = s"/api/$resourcesName"
+    val sql = name.map(x => sqls.like(Animator.defaultAlias.name, s"%$x%"))
 
-  override def createParams = Params(params)
-  override def createForm = validation(createParams,
-    paramKey("name") is required & maxLength(255),
-    paramKey("wikipedia_site_url") is required & maxLength(255)
-  )
-  override def createFormStrongParameters = Seq(
-    "name" -> ParamType.String,
-    "wikipedia_site_url" -> ParamType.String
-  )
-
-  override def updateParams = Params(params)
-  override def updateForm = validation(updateParams,
-    paramKey("name") is required & maxLength(255),
-    paramKey("wikipedia_site_url") is required & maxLength(255)
-  )
-  override def updateFormStrongParameters = Seq(
-    "name" -> ParamType.String,
-    "wikipedia_site_url" -> ParamType.String
-  )
-
+    val result = sql.map(x => Animator.findAllBy(x)).getOrElse(Animator.findAll())
+    renderWithFormat(result)(Format.JSON)
+  }
 }

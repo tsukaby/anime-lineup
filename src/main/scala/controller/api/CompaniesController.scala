@@ -1,38 +1,19 @@
 package controller.api
 
 import model.Company
+import scalikejdbc._
 import skinny._
-import skinny.controller.SkinnyApiResource
 import skinny.controller.feature.AngularXHRServerFeature
-import skinny.validator._
 
-class CompaniesController extends SkinnyApiResource with AngularXHRServerFeature {
+class CompaniesController extends SkinnyApiController with AngularXHRServerFeature {
   protectFromForgery()
 
-  override def model = Company
-  override def resourcesName = "companies"
-  override def resourceName = "company"
+  def index = {
+    val name = params.get("name")
 
-  override def resourcesBasePath = s"/api/$resourcesName"
+    val sql = name.map(x => sqls.like(Company.defaultAlias.name, s"%$x%"))
 
-  override def createParams = Params(params)
-  override def createForm = validation(createParams,
-    paramKey("name") is required & maxLength(255),
-    paramKey("company_type") is required & numeric & intValue
-  )
-  override def createFormStrongParameters = Seq(
-    "name" -> ParamType.String,
-    "company_type" -> ParamType.Int
-  )
-
-  override def updateParams = Params(params)
-  override def updateForm = validation(updateParams,
-    paramKey("name") is required & maxLength(255),
-    paramKey("company_type") is required & numeric & intValue
-  )
-  override def updateFormStrongParameters = Seq(
-    "name" -> ParamType.String,
-    "company_type" -> ParamType.Int
-  )
-
+    val result = sql.map(x => Company.findAllBy(x)).getOrElse(Company.findAll())
+    renderWithFormat(result)(Format.JSON)
+  }
 }
