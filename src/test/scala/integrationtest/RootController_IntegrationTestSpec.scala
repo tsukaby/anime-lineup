@@ -5,7 +5,7 @@ import skinny.test.SkinnyTestSupport
 import _root_.controller.Controllers
 
 class RootController_IntegrationTestSpec extends ScalatraFlatSpec with SkinnyTestSupport {
-  Controllers.root.mount(servletContextHandler.getServletContext)
+  //Controllers.root.mount(servletContextHandler.getServletContext)
 
   it should "show top page" in {
     get("/") {
