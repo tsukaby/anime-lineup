@@ -42,7 +42,7 @@
         </div>
         <div class="panel-body">
           <a href="" ng-click="open(anime)" target="_blank"><img title="{{anime.name}}"
-            ng-src="{{anime.getThumbnailURL()}}" width="200" height="200"/></a>
+            src="/thumbs/{{anime.officialSiteUrl | UrlEncodeFilter }}" width="200" height="200"/></a>
         </div>
         <!-- 視聴状況選択 -->
         <div class="panel-footer" ng-show="currentUser">

@@ -11,6 +11,7 @@ object Controllers {
     apiAnimes.mount(ctx)
     apiAnimators.mount(ctx)
     apiSeasons.mount(ctx)
+    thumbs.mount(ctx)
     //root.mount(ctx)
     AssetsController.mount(ctx)
   }
@@ -34,6 +35,10 @@ object Controllers {
 
   object apiSeasons extends SeasonsController with Routes {
     val indexUrl = get("/api/seasons/?")(index).as('index)
+  }
+
+  object thumbs extends ThumbsController with Routes {
+    val showUrl = get("/thumbs/:url")(show).as('show)
   }
 
 }

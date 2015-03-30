@@ -45,7 +45,9 @@ object SkinnyAppBuild extends Build {
       "org.scalatra" %% "scalatra-scalatest" % scalatraVersion % "test",
       "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % "container",
       "org.eclipse.jetty" % "jetty-plus" % jettyVersion % "container",
-      "javax.servlet" % "javax.servlet-api" % "3.1.0" % "container;provided;test"
+      "javax.servlet" % "javax.servlet-api" % "3.1.0" % "container;provided;test",
+      "com.github.detro" % "phantomjsdriver" % "1.2.0" exclude("org.seleniumhq.selenium", "jetty-repacked"), // For screen capture.
+      "com.sksamuel.scrimage" %% "scrimage-core" % "1.4.2" // For convert image.
     ),
     resolvers ++= Seq(
       "sonatype releases" at "https://oss.sonatype.org/content/repositories/releases"
