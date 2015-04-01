@@ -109,7 +109,7 @@ module AnimeListControllerModule {
 
                 var modalInstance = $modal.open({
                     templateUrl: "/partials/anime_detail.html",
-                    controller: "ModalInstanceCtrl",
+                    controller: "ModalInstanceController",
                     resolve: {
                         anime: function () {
                             return anime;

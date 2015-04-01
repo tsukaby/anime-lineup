@@ -1,18 +1,18 @@
 <div class="modal-header">
-  <h3>{{anime.getTitle()}}
-    <span class="badge pull-right" style="background: {{anime.season| seasonColorFilter}}">{{anime.year}} {{anime.season}}</span>
-    <a ng-href="{{anime.getWikipediaURL()}}" target="_blank"><span class="badge pull-right">Wikipedia</span></a>
-    <a ng-href="{{anime.getURL()}}" target="_blank"><span class="badge pull-right">公式</span></a>
+  <h3>{{anime.name}}
+    <span class="badge pull-right" style="background: {{anime.seasonType | SeasonColorFilter }}">{{anime.year}} {{anime.seasonType}}</span>
+    <a ng-href="{{anime.wikipediaSiteUrl}}" target="_blank"><span class="badge pull-right">Wikipedia</span></a>
+    <a ng-href="{{anime.officialSiteUrl}}" target="_blank"><span class="badge pull-right">公式</span></a>
   </h3>
 </div>
 <div class="modal-body">
-  <a href="{{anime.getURL()}}" target="_blank"><img title="{{anime.getTitle()}}"
-    ng-src="{{anime.getThumbnailURL2(300,400)}}" width="300" height="400"/></a>
+  <a href="{{anime.officialSiteUrl}}" target="_blank"><img title="{{anime.name}}"
+    ng-src="/thumbs/{{anime.officialSiteUrl | UrlEncodeFilter }}" width="300" height="400"/></a>
   <ul id="introduce">
     <!-- Google -->
     <li>
       <!-- +1 ボタン を表示したい位置に次のタグを貼り付けてください。 -->
-      <div class="g-plusone" data-size="tall" data-href="{{anime.getURL()}}"></div>
+      <div class="g-plusone" data-size="tall" data-href="{{anime.officialSiteUrl}}"></div>
       <!-- 最後の +1 ボタン タグの後に次のタグを貼り付けてください。 -->
       <script type="text/javascript">
         window.___gcfg = {lang: 'ja'};
@@ -34,8 +34,8 @@
       <script type="text/javascript" src="https://b.hatena.ne.jp/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <!-- Twitter -->
-    <li><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{anime.getURL()}}" data-lang="en"
-      data-text="{{anime.getTitle()}}" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
+    <li><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{anime.officialSiteUrl}}" data-lang="en"
+      data-text="{{anime.name}}" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
       <script>!function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (!d.getElementById(id)) {
