@@ -6,7 +6,7 @@
     <ul class="pager">
       <li class="previous" ng-class={'disabled':!previousSeason}><a ng-href="{{previousSeason}}"><span
         class="glyphicon glyphicon-chevron-left"></span>Old</a></li>
-      <li><a href="/season_calendar">{{NavigationService.title}}</a></li>
+      <li><a href="/season_calendar">{{navigationService.title}}</a></li>
       <li class="next" ng-class={'disabled':!nextSeason}><a ng-href="{{nextSeason}}">New<span
         class="glyphicon glyphicon-chevron-right"></span></a></li>
     </ul>
@@ -38,11 +38,11 @@
       <div class="panel panel-primary" ng-class="{'panel-gray':anime.status === 0, 'panel-blue':anime.status === 1, 'panel-green':anime.status === 2}">
         <div class="panel-heading" style="height:55px;">
           <a href="" ng-click="open(anime)"><h3 class="panel-title text-center" style="color:white;">
-            {{anime.getTitle()}}</h3></a>
+            {{anime.name}}</h3></a>
         </div>
         <div class="panel-body">
-          <a href="" ng-click="open(anime)" target="_blank"><img title="{{anime.getTitle()}}"
-            ng-src="{{anime.getThumbnailURL()}}" width="200" height="200"/></a>
+          <a href="" ng-click="open(anime)" target="_blank"><img title="{{anime.name}}"
+            src="/thumbs/{{anime.officialSiteUrl | UrlEncodeFilter }}" width="200" height="200"/></a>
         </div>
         <!-- 視聴状況選択 -->
         <div class="panel-footer" ng-show="currentUser">
@@ -62,7 +62,7 @@
     <ul class="pager">
       <li class="previous" ng-class={'disabled':!previousSeason}><a ng-href="{{previousSeason}}"
         ng-click="resetScroll()"><span class="glyphicon glyphicon-chevron-left"></span>Old</a></li>
-      <li><a href="/season_calendar">{{NavigationService.title}}</a></li>
+      <li><a href="/season_calendar">{{navigationService.title}}</a></li>
       <li class="next" ng-class={'disabled':!nextSeason}><a ng-href="{{nextSeason}}" ng-click="resetScroll()">New<span
         class="glyphicon glyphicon-chevron-right"></span></a></li>
     </ul>

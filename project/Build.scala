@@ -23,31 +23,34 @@ object SkinnyAppBuild extends Build {
 
   lazy val baseSettings = ScalatraPlugin.scalatraWithJRebel ++ herokuSettings ++ Seq(
     organization := appOrganization,
-    name         := appName,
-    version      := appVersion,
+    name := appName,
+    version := appVersion,
     scalaVersion := theScalaVersion,
     dependencyOverrides := Set(
-      "org.scala-lang" %  "scala-library"  % scalaVersion.value,
-      "org.scala-lang" %  "scala-reflect"  % scalaVersion.value,
-      "org.scala-lang" %  "scala-compiler" % scalaVersion.value
+      "org.scala-lang" % "scala-library" % scalaVersion.value,
+      "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+      "org.scala-lang" % "scala-compiler" % scalaVersion.value
     ),
     libraryDependencies ++= Seq(
-      "org.skinny-framework"    %% "skinny-framework"    % skinnyVersion,
-      "org.skinny-framework"    %% "skinny-assets"       % skinnyVersion,
-      "org.skinny-framework"    %% "skinny-task"         % skinnyVersion,
-      "org.skinny-framework"    %  "skinny-logback"      % "1.0.3",
-      "org.apache.commons"      %  "commons-dbcp2"       % "2.0.1",
-      "com.h2database"          %  "h2"                  % "1.4.185",      // your own JDBC driver
-      "ch.qos.logback"          %  "logback-classic"     % "1.1.2",
-      "org.skinny-framework"    %% "skinny-factory-girl" % skinnyVersion   % "test",
-      "org.skinny-framework"    %% "skinny-test"         % skinnyVersion   % "test",
-      "org.scalatra"            %% "scalatra-scalatest"  % scalatraVersion % "test",
-      "org.eclipse.jetty"       %  "jetty-webapp"        % jettyVersion    % "container",
-      "org.eclipse.jetty"       %  "jetty-plus"          % jettyVersion    % "container",
-      "javax.servlet"           %  "javax.servlet-api"   % "3.1.0"         % "container;provided;test"
+      "org.skinny-framework" %% "skinny-framework" % skinnyVersion,
+      "org.skinny-framework" %% "skinny-assets" % skinnyVersion,
+      "org.skinny-framework" %% "skinny-task" % skinnyVersion,
+      "org.skinny-framework" % "skinny-logback" % "1.0.3",
+      "org.apache.commons" % "commons-dbcp2" % "2.0.1",
+      "mysql" % "mysql-connector-java" % "5.1.34",
+      "com.h2database" % "h2" % "1.4.185", // your own JDBC driver
+      "ch.qos.logback" % "logback-classic" % "1.1.2",
+      "org.skinny-framework" %% "skinny-factory-girl" % skinnyVersion % "test",
+      "org.skinny-framework" %% "skinny-test" % skinnyVersion % "test",
+      "org.scalatra" %% "scalatra-scalatest" % scalatraVersion % "test",
+      "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % "container",
+      "org.eclipse.jetty" % "jetty-plus" % jettyVersion % "container",
+      "javax.servlet" % "javax.servlet-api" % "3.1.0" % "container;provided;test",
+      "com.github.detro" % "phantomjsdriver" % "1.2.0" exclude("org.seleniumhq.selenium", "jetty-repacked"), // For screen capture.
+      "com.sksamuel.scrimage" %% "scrimage-core" % "1.4.2" // For convert image.
     ),
     resolvers ++= Seq(
-      "sonatype releases"  at "https://oss.sonatype.org/content/repositories/releases"
+      "sonatype releases" at "https://oss.sonatype.org/content/repositories/releases"
       //,"sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
     ),
     // Faster "./skinny idea" 
@@ -61,23 +64,25 @@ object SkinnyAppBuild extends Build {
   )
 
   lazy val scalatePrecompileSettings = scalateSettings ++ Seq(
-    scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
-      Seq( TemplateConfig(file(".") / "src" / "main" / "webapp" / "WEB-INF",
-      // These imports should be same as src/main/scala/templates/ScalatePackage.scala
-      Seq("import controller._", "import model._"),
-      Seq(Binding("context", "_root_.org.scalatra.scalate.ScalatraRenderContext", importMembers = true, isImplicit = true)),
-      Some("templates")))
+    scalateTemplateConfig in Compile <<= (sourceDirectory in Compile) { base =>
+      Seq(TemplateConfig(file(".") / "src" / "main" / "webapp" / "WEB-INF",
+        // These imports should be same as src/main/scala/templates/ScalatePackage.scala
+        Seq("import controller._", "import model._"),
+        Seq(Binding("context", "_root_.org.scalatra.scalate.ScalatraRenderContext", importMembers = true, isImplicit = true)),
+        Some("templates")))
     }
   )
 
-  lazy val jettyOrbitHack = Seq(ivyXML := <dependencies><exclude org="org.eclipse.jetty.orbit" /></dependencies>)
+  lazy val jettyOrbitHack = Seq(ivyXML := <dependencies>
+    <exclude org="org.eclipse.jetty.orbit"/>
+  </dependencies>)
 
   // -------------------------------------------------------
   // Development
   // -------------------------------------------------------
 
   lazy val devBaseSettings = baseSettings ++ Seq(
-    unmanagedClasspath in Test <+= (baseDirectory) map { bd =>  Attributed.blank(bd / "src/main/webapp") },
+    unmanagedClasspath in Test <+= (baseDirectory) map { bd => Attributed.blank(bd / "src/main/webapp") },
     // Scalatra tests become slower when multiple controller tests are loaded in the same time
     parallelExecution in Test := false,
     port in container.Configuration := 8080
@@ -105,7 +110,7 @@ object SkinnyAppBuild extends Build {
       mainClass := Some("TaskRunner"),
       name := appName + "-task"
     )
-  ) dependsOn(dev)
+  ) dependsOn (dev)
 
   // -------------------------------------------------------
   // Packaging
@@ -139,7 +144,9 @@ object SkinnyAppBuild extends Build {
   // Run "./skinny heroku:init"
 
   lazy val stage = taskKey[Unit]("Dummy stage task to keep Heroku happy")
-  lazy val herokuSettings = Seq(stage := { "heroku/stage" ! })
+  lazy val herokuSettings = Seq(stage := {
+    "heroku/stage" !
+  })
 
 }
 

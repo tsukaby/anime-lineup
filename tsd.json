@@ -22,6 +22,9 @@
     },
     "angularjs/angular-mocks.d.ts": {
       "commit": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "angularjs/angular-resource.d.ts": {
+      "commit": "3882d337bb0808cde9fe4c08012508a48c135482"
     }
   }
 }
