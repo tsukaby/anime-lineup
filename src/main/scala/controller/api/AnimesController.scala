@@ -1,7 +1,6 @@
 package controller.api
 
 import model.Anime
-import org.joda.time.DateTime
 import scalikejdbc._
 import skinny._
 import skinny.controller.feature.AngularXHRServerFeature
@@ -11,13 +10,15 @@ class AnimesController extends SkinnyApiController with AngularXHRServerFeature 
 
   def index = {
     val name = params.get("name")
-    val year = params.get("year").getOrElse(DateTime.now().getYear)
-    val seasonType = params.get("season_type").getOrElse(1)
+    val year = params.get("year")
+    val seasonType = params.get("season_type")
 
-    val baseSql = sqls.eq(Anime.defaultAlias.year, year).and.eq(Anime.defaultAlias.seasonType, seasonType)
-    val sql = name.foldLeft(baseSql)((x, y) => x.like(Anime.defaultAlias.name, s"%$y%"))
-
-    val result = Anime.findAllBy(sql)
+    val sql = sqls.toAndConditionOpt(
+      name.map(x => sqls.like(Anime.defaultAlias.name, s"%$x%")),
+      year.map(x => sqls.eq(Anime.defaultAlias.year, x)),
+      seasonType.map(x => sqls.eq(Anime.defaultAlias.seasonType, x))
+    )
+    val result = sql.map(x => Anime.findAllBy(x)).getOrElse(Anime.findAll())
     renderWithFormat(result)(Format.JSON)
   }
 }
