@@ -6,7 +6,7 @@
     <ul class="pager">
       <li class="previous" ng-class={'disabled':!previousSeason}><a ng-href="{{previousSeason}}"><span
         class="glyphicon glyphicon-chevron-left"></span>Old</a></li>
-      <li><a href="/season_calendar">{{NavigationService.title}}</a></li>
+      <li><a href="/season_calendar">{{navigationService.title}}</a></li>
       <li class="next" ng-class={'disabled':!nextSeason}><a ng-href="{{nextSeason}}">New<span
         class="glyphicon glyphicon-chevron-right"></span></a></li>
     </ul>
@@ -62,7 +62,7 @@
     <ul class="pager">
       <li class="previous" ng-class={'disabled':!previousSeason}><a ng-href="{{previousSeason}}"
         ng-click="resetScroll()"><span class="glyphicon glyphicon-chevron-left"></span>Old</a></li>
-      <li><a href="/season_calendar">{{NavigationService.title}}</a></li>
+      <li><a href="/season_calendar">{{navigationService.title}}</a></li>
       <li class="next" ng-class={'disabled':!nextSeason}><a ng-href="{{nextSeason}}" ng-click="resetScroll()">New<span
         class="glyphicon glyphicon-chevron-right"></span></a></li>
     </ul>

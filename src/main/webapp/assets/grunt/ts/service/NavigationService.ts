@@ -15,7 +15,7 @@ module Service {
          * title変数に現在のシーズンを設定する。
          */
         seasonMode = ():void => {
-            this.title = "シーズン：" + this.$rootScope.season.year + "年 " + this.SeasonService.toJapaneseForSeason(this.$rootScope.season.season);
+            this.title = "シーズン：" + this.$rootScope.season.year + "年 " + this.SeasonService.toJapaneseForSeason(this.$rootScope.season.seasonType);
         };
 
         /**
