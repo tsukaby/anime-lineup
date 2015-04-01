@@ -64,5 +64,7 @@ ivy2
 
 node_modules
 
-bower_components
-src/main/webapp/assets/
+src/main/webapp/assets/bower_components
+src/main/webapp/assets/css
+src/main/webapp/assets/js
+src/main/webapp/assets/grunt/ts/typings
