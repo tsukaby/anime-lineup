@@ -51,22 +51,22 @@ module App {
                     templateUrl: "/partials/help.html"
                 })
                 .state("/login", {
-                    url:"/login",
+                    url: "/login",
                     controller: "LoginController",
                     templateUrl: "/partials/login.html"
                 })
                 .state("/register_anime", {
-                    url:"/register_anime",
+                    url: "/register_anime",
                     controller: "RegisterAnimeController",
                     templateUrl: "/partials/register_anime.html"
                 })
                 .state("/register_anime/:year/:season/:success", {
-                    url:"/register_anime/:year/:season/:success",
+                    url: "/register_anime/:year/:season/:success",
                     controller: "RegisterAnimeController",
                     templateUrl: "/partials/register_anime.html"
                 })
                 .state("/season_calendar", {
-                    url:"/season_calendar",
+                    url: "/season_calendar",
                     controller: "SeasonController",
                     templateUrl: "/partials/season_list.html"
                 });
