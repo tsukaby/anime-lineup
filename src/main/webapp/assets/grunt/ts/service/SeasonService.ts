@@ -129,7 +129,7 @@ module Service {
          * @returns {*} シーズンの日本語名
          */
         toJapaneseForSeason(seasonType:number):string {
-            var seasons = ["", "春", "夏", "秋", "冬"];
+            var seasons = ["", "冬", "春", "夏", "秋"];
             return seasons[seasonType];
         }
 
