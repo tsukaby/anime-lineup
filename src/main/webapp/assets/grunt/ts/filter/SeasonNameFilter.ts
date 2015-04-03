@@ -1,18 +1,18 @@
 module Filter {
     "use strict";
 
-    export function SeasonColorFilter() {
+    export function SeasonNameFilter() {
         return (input:number):string => {
             if (input === 1) {
-                return "#5141D9";
+                return "冬";
             } else if (input === 2) {
-                return "#B2F63D";
+                return "春";
             } else if (input === 3) {
-                return "#FF4540";
+                return "夏";
             } else if (input === 4) {
-                return "#FFAC40";
+                return "秋";
             } else {
-                return "#000000";
+                return "";
             }
         };
     }
