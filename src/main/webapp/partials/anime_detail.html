@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h3>{{anime.name}}
-    <span class="badge pull-right" style="background: {{anime.seasonType | SeasonColorFilter }}">{{anime.year}} {{anime.seasonType}}</span>
+    <span class="badge pull-right" style="background: {{anime.seasonType | SeasonColorFilter }}">{{anime.year}} {{anime.seasonType | SeasonNameFilter }}</span>
     <a ng-href="{{anime.wikipediaSiteUrl}}" target="_blank"><span class="badge pull-right">Wikipedia</span></a>
     <a ng-href="{{anime.officialSiteUrl}}" target="_blank"><span class="badge pull-right">公式</span></a>
   </h3>

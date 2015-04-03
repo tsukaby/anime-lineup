@@ -139,6 +139,7 @@ module App {
         false;
     })
         .filter("SeasonColorFilter", () => Filter.SeasonColorFilter())
+        .filter("SeasonNameFilter", () => Filter.SeasonNameFilter())
         .filter("ViewingSortFilter", () => Filter.ViewingSortFilter())
         .filter("UrlEncodeFilter", () => Filter.UrlEncodeFilter())
     ;
