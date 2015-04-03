@@ -12,6 +12,8 @@ object Controllers {
     apiAnimators.mount(ctx)
     apiSeasons.mount(ctx)
     thumbs.mount(ctx)
+    fbAuth.mount(ctx)
+    sAuth.mount(ctx)
     //root.mount(ctx)
     AssetsController.mount(ctx)
   }
@@ -39,6 +41,18 @@ object Controllers {
 
   object thumbs extends ThumbsController with Routes {
     val showUrl = get("/thumbs/:url")(show).as('show)
+  }
+
+  object fbAuth extends FBAuthController with Routes {
+    val facebookLoginUrl = post("/auth/facebook")(loginRedirect).as('facebookLogin)
+    val facebookLoginCallbackUrl = get("/auth/facebook/callback")(callback).as('facebookLogin)
+  }
+
+  object sAuth extends SessionsController with Routes {
+    val googleLoginUrl = post("/auth/google")(loginRedirect).as('googleLogin)
+    val googleLoginCallbackUrl = get("/auth/google/callback")(callback).as('googleLogin)
+    val twitterLoginUrl = post("/auth/twitter")(loginRedirect).as('twitterLogin)
+    val twitterLoginCallbackUrl = get("/auth/twitter/callback")(callback).as('twitterLogin)
   }
 
 }
