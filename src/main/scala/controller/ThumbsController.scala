@@ -11,35 +11,42 @@ import skinny._
 class ThumbsController extends SkinnyController {
   protectFromForgery()
 
-  def show = params.getAs[String]("url").map { url =>
-    contentType = "image/jpeg"
+  def show = {
+    (for {
+      url <- params.getAs[String]("url")
+      width <- params.getAs[Int]("width")
+      height <- params.getAs[Int]("height")
+    } yield {
+        contentType = "image/jpeg"
 
-    Image.findById(url).map(_.content).getOrElse {
-      val img = getImage(url)
-      Image.createWithAttributes(
-        'image_id -> url,
-        'content -> img
-      )
-      img
-    }
-  }.getOrElse(haltWithBody(404))
+        val imageId = s"$url?width=$width&height=$height"
+        Image.findById(imageId).map(_.content).getOrElse {
+          val content = getImage(url, width, height)
+          Image.createWithAttributes(
+            'image_id -> imageId,
+            'content -> content
+          )
+          content
+        }
+      }) getOrElse haltWithBody(404)
+  }
 
   /**
-   * 引数で指定したWebページのサムネイル画像を取得します。
-   * @param url サムネイル画像を取得するページのURL
-   * @return サムネイル画像のバイナリ
+   * Get a thumbnail image on the web page.
+   *
+   * @param url Web site url for capturing.
+   * @param width Capture image size.
+   * @param height Capture image size.
+   * @return Binary of thumbnail.
    */
-  def getImage(url: String): Array[Byte] = {
+  def getImage(url: String, width: Int, height: Int): Array[Byte] = {
     implicit val driverTmp = new PhantomJSDriver()
     driverTmp.get(url)
     driverTmp.manage().window().setSize(new Dimension(1024, 768))
     val file = driverTmp.getScreenshotAs(OutputType.FILE)
 
     val fis = new FileInputStream(file)
-    // 横幅を400に変更 GhostDriver側ではあくまでウィンドウのサイズを設定できるだけで、キャプチャは意図通りのサイズにならない
-    // そのため、ここで400に変更
-    //val img = Image(fis).scaleToWidth(400).resizeTo(400, 100, Position.TopLeft)
-    val img = com.sksamuel.scrimage.Image(fis).scaleToWidth(400).resizeTo(400, 400, Position.TopLeft).writer(com.sksamuel.scrimage.Format.JPEG).withCompression(80)
+    val img = com.sksamuel.scrimage.Image(fis).scaleToWidth(width).resizeTo(width, height, Position.TopLeft).writer(com.sksamuel.scrimage.Format.JPEG).withCompression(80)
 
     fis.close()
     driverTmp.close()
