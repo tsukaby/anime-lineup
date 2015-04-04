@@ -33,8 +33,8 @@ http://localhost
 ### Docker deploy to Elastic Beanstalk
 
 ```
-# set NEWRELIC_LICENSE_KYE
-export NEWRELIC_LICENSE_KYE=xxxxxxxxxxxxx
+# set NEWRELIC_LICENSE_KEY
+export NEWRELIC_LICENSE_KEY=xxxxxxxxxxxxx
 
 # build
 ./package_for_elastic_beanstalk.sh

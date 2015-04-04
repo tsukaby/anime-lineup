@@ -14,7 +14,7 @@ ENV JAVA_HOME /usr/java/default
 
 RUN rpm -Uvh http://download.newrelic.com/pub/newrelic/el5/i386/newrelic-repo-5-3.noarch.rpm
 RUN yum install newrelic-sysmond
-RUN nrsysmond-config --set license_key=b48d398f09760075b90a4b9204c39ca8ff20b258
+RUN nrsysmond-config --set license_key=$NEWRELIC_LICENSE_KEY
 RUN /etc/init.d/newrelic-sysmond start
 RUN chkconfig newrelic-sysmond on
 

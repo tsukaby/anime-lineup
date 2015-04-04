@@ -7,7 +7,7 @@ mkdir -p elastic_beanstalk/standalone-build/target/scala-2.11
 
 cp standalone-build/target/scala-2.11/anime-lineup* elastic_beanstalk/standalone-build/target/scala-2.11/
 cp Dockerrun.aws.json elastic_beanstalk/
-sed -e 's/NEWRELIC_LICENSE_KEY/$NEWRELIC_LICENSE_KEY/g' ./Dockerfile > elastic_beanstalk/Dockerfile
+sed -e "s/NEWRELIC_LICENSE_KEY/$NEWRELIC_LICENSE_KEY/g" ./Dockerfile > elastic_beanstalk/Dockerfile
 
 
 
