@@ -13,7 +13,7 @@ RUN yum clean all
 ENV JAVA_HOME /usr/java/default
 
 RUN rpm -Uvh http://download.newrelic.com/pub/newrelic/el5/i386/newrelic-repo-5-3.noarch.rpm
-RUN yum install newrelic-sysmond
+RUN yum install -y newrelic-sysmond
 RUN nrsysmond-config --set license_key=NEWRELIC_LICENSE_KEY
 RUN /etc/init.d/newrelic-sysmond start
 RUN chkconfig newrelic-sysmond on
@@ -21,6 +21,6 @@ RUN chkconfig newrelic-sysmond on
 # Copy application
 ADD standalone-build/target/scala-2.11/anime-lineup* /usr/local/anime-lineup.jar
 
-EXPOSE 8080
+EXPOSE 80
 
-ENTRYPOINT ["java", "-jar", "-Dskinny.port=8080", "-Dskinny.env=development", "/usr/local/anime-lineup.jar"]
+ENTRYPOINT ["java", "-jar", "-Dskinny.port=80", "-Dskinny.env=production", "/usr/local/anime-lineup.jar"]
