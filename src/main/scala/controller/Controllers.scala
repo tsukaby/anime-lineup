@@ -1,6 +1,6 @@
 package controller
 
-import _root_.controller.api.{SeasonsController, CompaniesController, AnimatorsController, AnimesController}
+import _root_.controller.api._
 import skinny._
 import skinny.controller.AssetsController
 
@@ -13,7 +13,8 @@ object Controllers {
     apiSeasons.mount(ctx)
     thumbs.mount(ctx)
     fbAuth.mount(ctx)
-    sAuth.mount(ctx)
+    googleAuth.mount(ctx)
+    twitterAuth.mount(ctx)
     //root.mount(ctx)
     AssetsController.mount(ctx)
   }
@@ -44,15 +45,18 @@ object Controllers {
   }
 
   object fbAuth extends FBAuthController with Routes {
-    val facebookLoginUrl = post("/auth/facebook")(loginRedirect).as('facebookLogin)
-    val facebookLoginCallbackUrl = get("/auth/facebook/callback")(callback).as('facebookLogin)
+    val facebookLoginUrl = get("/api/auth/facebook")(loginRedirect).as('facebookLogin)
+    val facebookLoginCallbackUrl = get("/api/auth/facebook/callback")(callback).as('facebookLogin)
+  }
+  
+  object googleAuth extends GoogleAuthController with Routes {
+    val googleLoginUrl = get("/api/auth/google")(loginRedirect).as('googleLogin)
+    val googleLoginCallbackUrl = get("/api/auth/google/callback")(callback).as('googleLogin)
   }
 
-  object sAuth extends SessionsController with Routes {
-    val googleLoginUrl = post("/auth/google")(loginRedirect).as('googleLogin)
-    val googleLoginCallbackUrl = get("/auth/google/callback")(callback).as('googleLogin)
-    val twitterLoginUrl = post("/auth/twitter")(loginRedirect).as('twitterLogin)
-    val twitterLoginCallbackUrl = get("/auth/twitter/callback")(callback).as('twitterLogin)
+  object twitterAuth extends TwitterAuthController with Routes {
+    val twitterLoginUrl = get("/api/auth/twitter")(loginRedirect).as('twitterLogin)
+    val twitterLoginCallbackUrl = get("/api/auth/twitter/callback")(callback).as('twitterLogin)
   }
 
 }
