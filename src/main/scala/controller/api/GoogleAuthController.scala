@@ -23,7 +23,7 @@ class GoogleAuthController extends ApplicationController with GoogleLoginFeature
   }
 
   override protected def redirectURI: String = if (isDevelopmentMode) {
-    val port = if(serverPort == 80) "" else s":$serverPort"
+    val port = if (serverPort == 80) "" else s":$serverPort"
     s"http://local.anime-lineup.tsukaby.com$port/api/auth/google/callback"
   } else {
     s"https://anime-lineup.tsukaby.com/api/auth/google/callback"
