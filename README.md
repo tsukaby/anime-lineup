@@ -14,8 +14,8 @@ boot2docker up
 
 # setup DOCKER environments
 
-# set NEWRELIC_LICENSE_KYE
-export NEWRELIC_LICENSE_KYE=xxxxxxxxxxxxx
+# set MY_DD_API_KEY
+export MY_DD_API_KEY=xxxxxxxxxxxxx
 
 # build
 docker build -t tsukaby/anime-lineup .
@@ -33,8 +33,8 @@ http://localhost
 ### Docker deploy to Elastic Beanstalk
 
 ```
-# set NEWRELIC_LICENSE_KEY
-export NEWRELIC_LICENSE_KEY=xxxxxxxxxxxxx
+# set MY_DD_API_KEY
+export MY_DD_API_KEY=xxxxxxxxxxxxx
 
 # build
 ./package_for_elastic_beanstalk.sh
