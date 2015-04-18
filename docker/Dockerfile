@@ -13,8 +13,14 @@ RUN yum clean all
 ENV JAVA_HOME /usr/java/default
 
 # Copy application
-ADD standalone-build/target/scala-2.11/anime-lineup* /usr/local/anime-lineup.jar
+RUN mkdir /usr/local/anime-lineup
+# RUN git clone https://github.com/tsukaby/anime-lineup.git /usr/local/anime-lineup
+ADD anime-lineup.jar /usr/local/anime-lineup/anime-lineup.jar
+
+WORKDIR /usr/local/anime-lineup
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "-Dskinny.port=8080", "-Dskinny.env=production", "/usr/local/anime-lineup.jar"]
+# CMD cd /usr/local/anime-lineup && git pull
+
+ENTRYPOINT ["java", "-jar", "-Dskinny.port=8080", "-Dskinny.env=production", "anime-lineup.jar"]
