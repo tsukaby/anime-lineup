@@ -1,0 +1,10 @@
+branch-defaults:
+  master:
+    environment: prod-anime-lineup
+global:
+  application_name: anime-lineup
+  default_ec2_keyname: aws
+  default_platform: docker
+  default_region: null
+  profile: null
+  sc: git

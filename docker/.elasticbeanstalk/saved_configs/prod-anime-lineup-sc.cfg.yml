@@ -1,0 +1,22 @@
+EnvironmentConfigurationMetadata:
+  Description: Configuration created from the EB CLI using "eb config save".
+  DateModified: '1429350852000'
+  DateCreated: '1429350852000'
+AWSConfigurationTemplateVersion: 1.1.0.0
+EnvironmentTier:
+  Name: WebServer
+  Type: Standard
+SolutionStack: 64bit Amazon Linux 2014.09 v1.2.1 running Docker 1.5.0
+OptionSettings:
+  aws:autoscaling:launchconfiguration:
+    IamInstanceProfile: aws-elasticbeanstalk-ec2-role
+    SecurityGroups: sg-abc623ce
+    EC2KeyName: aws
+    InstanceType: t2.micro
+  aws:elb:policies:
+    ConnectionDrainingEnabled: true
+  aws:autoscaling:updatepolicy:rollingupdate:
+    RollingUpdateType: Health
+    RollingUpdateEnabled: true
+  aws:elb:healthcheck:
+    Interval: '30'
