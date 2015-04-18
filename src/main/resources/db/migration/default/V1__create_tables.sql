@@ -3,26 +3,26 @@ CREATE TABLE animator (
   name varchar(255) NOT NULL,
   wikipedia_site_url varchar(255) NOT NULL,
   PRIMARY KEY (animator_id)
-);
+) ROW_FORMAT=COMPRESSED;
 
 CREATE TABLE company (
   company_id bigint(20) NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   company_type int(11) NOT NULL,
   PRIMARY KEY (company_id)
-);
+) ROW_FORMAT=COMPRESSED;
 
 CREATE TABLE image (
   image_id varchar(255) NOT NULL,
   content mediumblob NOT NULL,
   PRIMARY KEY (image_id)
-);
+) ROW_FORMAT=COMPRESSED;
 
 CREATE TABLE season (
   year int(11) NOT NULL,
   season_type int(11) NOT NULL,
   PRIMARY KEY (year,season_type)
-);
+) ROW_FORMAT=COMPRESSED;
 
 CREATE TABLE user (
   user_id bigint(20) NOT NULL AUTO_INCREMENT,
@@ -34,7 +34,7 @@ CREATE TABLE user (
   updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (user_id),
   UNIQUE KEY unique_facebook_user_id (facebook_user_id)
-);
+) ROW_FORMAT=COMPRESSED;
 
 
 CREATE TABLE anime (
@@ -52,4 +52,4 @@ CREATE TABLE anime (
   KEY director_id (director_id),
   FOREIGN KEY (production_company_id) REFERENCES company (company_id),
   FOREIGN KEY (director_id) REFERENCES animator (animator_id)
-);
+) ROW_FORMAT=COMPRESSED;
