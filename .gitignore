@@ -76,3 +76,5 @@ src/main/webapp/assets/grunt/ts/typings
 
 # Docker
 docker/*.jar
+
+.tmp
