@@ -19,6 +19,7 @@
     "passport-twitter": "^1.0.2"
   },
   "devDependencies": {
+    "typescript": "^1.4.1",
     "compass": "^0.1.0",
     "connect-livereload": "^0.5.2",
     "grunt": "^0.4.1",
@@ -79,8 +80,7 @@
     "should": "^4.4.2",
     "supertest": "^0.15.0",
     "time-grunt": "^1.0.0",
-    "tslint": "^2.1.1",
-    "typescript": "^1.4.1"
+    "tslint": "^2.1.1"
   },
   "engines": {
     "node": ">=0.10.0"
