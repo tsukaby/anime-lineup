@@ -49,8 +49,7 @@ class ThumbsController extends SkinnyController {
     val img = com.sksamuel.scrimage.Image(fis).scaleToWidth(width).resizeTo(width, height, Position.TopLeft).writer(com.sksamuel.scrimage.Format.JPEG).withCompression(80)
 
     fis.close()
-    driverTmp.close()
-
+    driverTmp.quit()
 
     val baos = new ByteArrayOutputStream()
     img.write(baos)
