@@ -10,9 +10,9 @@ module SeasonControllerModule {
     }
 
     export class SeasonController {
-        constructor($scope:IScope, SeasonService:Service.SeasonService) {
+        constructor($scope:IScope, seasonService:Service.SeasonService) {
 
-            $scope.seasons = SeasonService.getSeasons();
+            $scope.seasons = seasonService.getSeasons();
         }
     }
 }

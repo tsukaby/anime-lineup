@@ -15,9 +15,9 @@ module AnimeSearchControllerModule {
     export class AnimeSearchController {
         constructor($scope:IScope,
                     $rootScope:any,
-                    AnimeSearchService:any,
-                    NavigationService:any,
-                    AuthService:Service.AuthService,
+                    animeSearchService:any,
+                    navigationService:any,
+                    authService:Service.AuthService,
                     $location:ng.ILocationService) {
             /**
              * タイトルによるアニメ検索。
@@ -26,13 +26,13 @@ module AnimeSearchControllerModule {
              */
             $scope.searchByTitle = (title:string)=> {
                 if (!title) {
-                    AnimeSearchService.searchByDefault();
-                    NavigationService.seasonMode();
+                    animeSearchService.searchByDefault();
+                    navigationService.seasonMode();
                     return;
                 }
 
-                AnimeSearchService.searchByTitle(title);
-                NavigationService.searchMode(title);
+                animeSearchService.searchByTitle(title);
+                navigationService.searchMode(title);
             };
 
             /**
@@ -50,7 +50,7 @@ module AnimeSearchControllerModule {
                     delete $rootScope.animes[i].status;
                 }
 
-                AuthService.logout();
+                authService.logout();
             };
 
             /**

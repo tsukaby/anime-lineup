@@ -87,12 +87,12 @@ module App {
                 };
             }]);
         }
-    ).run(($rootScope:any, $location:ng.ILocationService, AuthService:Service.AuthService) => {
+    ).run(($rootScope:any, $location:ng.ILocationService, authService:Service.AuthService) => {
             $rootScope.season = {};
 
             // Redirect to login if route requires auth and you"re not logged in
             $rootScope.$on("$routeChangeStart", (event:any, next:any) => {
-                if (next.authenticate && !AuthService.isLoggedIn()) {
+                if (next.authenticate && !authService.isLoggedIn()) {
                     $location.path("/login");
                 }
             });
@@ -105,16 +105,16 @@ module App {
             false;
         }
     )
-        .factory("AnimeSearchService", ($http:ng.IHttpService, $rootScope:ng.IRootScopeService):Service.AnimeSearchService => {
+        .factory("animeSearchService", ($http:ng.IHttpService, $rootScope:ng.IRootScopeService):Service.AnimeSearchService => {
             return new Service.AnimeSearchService($http, $rootScope);
         })
-        .factory("AuthService", ($location:ng.ILocationService, $rootScope:any, $cookieStore:any, $http:ng.IHttpService):Service.AuthService => {
+        .factory("authService", ($location:ng.ILocationService, $rootScope:any, $cookieStore:any, $http:ng.IHttpService):Service.AuthService => {
             return new Service.AuthService($location, $rootScope, $cookieStore, $http);
         })
-        .factory("NavigationService", ($rootScope:any, SeasonService:Service.SeasonService):Service.NavigationService => {
-            return new Service.NavigationService($rootScope, SeasonService);
+        .factory("navigationService", ($rootScope:any, seasonService:Service.SeasonService):Service.NavigationService => {
+            return new Service.NavigationService($rootScope, seasonService);
         })
-        .factory("SeasonService", ($http:ng.IHttpService):Service.SeasonService => {
+        .factory("seasonService", ($http:ng.IHttpService):Service.SeasonService => {
             return new Service.SeasonService($http);
         })
     ;

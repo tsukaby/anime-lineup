@@ -6,7 +6,7 @@ module Service {
     "use strict";
 
     export class NavigationService {
-        constructor(public $rootScope:any, public SeasonService:Service.SeasonService) {
+        constructor(public $rootScope:any, public seasonService:Service.SeasonService) {
         }
 
         title:string;
@@ -15,7 +15,7 @@ module Service {
          * title変数に現在のシーズンを設定する。
          */
         seasonMode = ():void => {
-            this.title = "シーズン：" + this.$rootScope.season.year + "年 " + this.SeasonService.toJapaneseForSeason(this.$rootScope.season.seasonType);
+            this.title = "シーズン：" + this.$rootScope.season.year + "年 " + this.seasonService.toJapaneseForSeason(this.$rootScope.season.seasonType);
         };
 
         /**

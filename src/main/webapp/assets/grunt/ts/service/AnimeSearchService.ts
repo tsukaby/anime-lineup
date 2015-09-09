@@ -75,6 +75,6 @@ module Service {
             var seasonType:number = this.$rootScope.season.seasonType;
 
             this.searchBySeason(year, seasonType, callback);
-        }
+        };
     }
 }

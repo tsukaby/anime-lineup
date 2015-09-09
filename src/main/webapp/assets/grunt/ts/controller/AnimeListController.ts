@@ -27,11 +27,11 @@ module AnimeListControllerModule {
                     $rootScope:any,
                     $http:ng.IHttpService,
                     $stateParams:any,
-                    SeasonService:any,
+                    seasonService:any,
                     $filter:ng.IFilterService,
                     $modal:any,
-                    AnimeSearchService:any,
-                    NavigationService:any,
+                    animeSearchService:any,
+                    navigationService:any,
                     scroller:any
         ) {
             $scope.isVisibleSearchBox = true;
@@ -42,7 +42,7 @@ module AnimeListControllerModule {
                 $rootScope.season.seasonType = Number($stateParams.seasonType);
             } else {
                 // Set current season if query is not provided or incomplete.
-                var current = SeasonService.currentSeason();
+                var current = seasonService.currentSeason();
                 $rootScope.season.year = current.year;
                 $rootScope.season.seasonType = current.seasonType;
             }
@@ -50,18 +50,18 @@ module AnimeListControllerModule {
             //isLoadedによってローディング画像の表示を切り替える
             $scope.isLoaded = false;
             //AnimeSearchService.searchBySeason($rootScope.season.year, $rootScope.season.seasonType, function () {
-            AnimeSearchService.searchBySeason($rootScope.season.year, $rootScope.season.seasonType, () => {
+            animeSearchService.searchBySeason($rootScope.season.year, $rootScope.season.seasonType, () => {
                 $scope.isLoaded = true;
             });
 
             //現在のシーズンを設定
-            $scope.navigationService = NavigationService;
+            $scope.navigationService = navigationService;
             $scope.navigationService.seasonMode();
 
             //前と次のシーズンのリンクを設定
 
-            var previous:Model.Season = SeasonService.previousSeason($rootScope.season.year, $rootScope.season.seasonType);
-            var next:Model.Season = SeasonService.nextSeason($rootScope.season.year, $rootScope.season.seasonType);
+            var previous:Model.Season = seasonService.previousSeason($rootScope.season.year, $rootScope.season.seasonType);
+            var next:Model.Season = seasonService.nextSeason($rootScope.season.year, $rootScope.season.seasonType);
             $scope.previousSeason = "?year=" + previous.year + "&seasonType=" + previous.seasonType;
             $scope.nextSeason = "?year=" + next.year + "&seasonType=" + next.seasonType;
 
